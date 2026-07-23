@@ -1,0 +1,182 @@
+:root{
+  --navy:#12243A; --navy-2:#1B3556; --gold:#B08A3E; --gold-2:#D4AC63;
+  --bg:#F4F1EA; --card:#FFFFFF; --ink:#16202E; --muted:#6B7382;
+  --line:#E2E1DB; --low:#1D9E75; --med:#EF9F27; --high:#E24B4A;
+  --radius:14px;
+}
+*{box-sizing:border-box}
+[hidden]{display:none !important}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Segoe UI",system-ui,-apple-system,"Noto Sans Arabic",sans-serif;font-size:15px}
+h2{font-size:14px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;
+  color:var(--navy);margin:0 0 12px}
+.muted{color:var(--muted)} .small{font-size:12.5px}
+
+.topbar{display:flex;justify-content:space-between;align-items:center;
+  padding:14px 26px;background:var(--navy);color:#fff}
+.brand{display:flex;align-items:baseline;gap:16px}
+.mark{font-size:26px;font-weight:700;letter-spacing:.18em;color:#fff}
+.tag{font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-2)}
+.topbar-actions{display:flex;gap:10px;align-items:center}
+
+.btn{border:0;border-radius:10px;padding:9px 16px;font-size:13.5px;font-weight:600;
+  cursor:pointer;font-family:inherit;transition:.15s}
+.btn.primary{background:var(--gold);color:#231a08}
+.btn.primary:hover{background:var(--gold-2)}
+.btn.ghost{background:rgba(255,255,255,.1);color:#fff}
+.btn.ghost:hover{background:rgba(255,255,255,.2)}
+.btn.small{background:var(--navy);color:#fff;padding:8px 14px}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+
+.chip{font-size:11px;padding:4px 10px;border-radius:999px;
+  background:rgba(255,255,255,.12);color:#fff;letter-spacing:.03em}
+.chip.subtle{background:#EFEDE6;color:var(--muted)}
+.chip.risk-Low{background:#E1F5EE;color:#0F6E56}
+.chip.risk-Medium{background:#FAEEDA;color:#854F0B}
+.chip.risk-High{background:#FCEBEB;color:#A32D2D}
+
+.layout{display:grid;grid-template-columns:352px 1fr;gap:18px;padding:18px 26px 40px;
+  align-items:start}
+.col-left,.col-right{display:flex;flex-direction:column;gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+.card-head{display:flex;justify-content:space-between;align-items:center;
+  gap:12px;margin-bottom:12px}
+.head-actions{display:flex;align-items:center;gap:8px;min-width:0}
+.head-actions .chip{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:520px}
+.btn.tiny{background:#EFEDE6;color:var(--navy);padding:5px 11px;font-size:11.5px;flex:none}
+.btn.tiny:hover{background:var(--gold);color:#231a08}
+.card-head h2{margin:0}
+
+.avatar-card{text-align:center}
+/* Executive portrait frame. Matches the approved deck: 3:4 aspect, deep
+   navy backdrop, a thin gold rule top and bottom, and a soft radial glow
+   behind the subject to lift the head off the plane. */
+.avatar-stage{position:relative;width:100%;aspect-ratio:3/4;max-height:310px;
+  margin:0 auto 14px;border-radius:10px;overflow:hidden;
+  background:
+    radial-gradient(ellipse 68% 55% at 50% 38%, rgba(176,138,62,.14), transparent 72%),
+    linear-gradient(180deg, #0d1a2c 0%, #12243A 55%, #0a1524 100%);
+  border:1px solid rgba(176,138,62,.35);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.04),
+    inset 0 -30px 60px rgba(0,0,0,.35),
+    0 8px 20px rgba(0,0,0,.15);
+  transition:box-shadow .3s}
+.avatar-stage::before{content:"";position:absolute;left:14%;right:14%;top:0;
+  height:1px;background:linear-gradient(90deg, transparent, var(--gold), transparent);
+  z-index:2;pointer-events:none}
+.avatar-stage::after{content:"";position:absolute;left:14%;right:14%;bottom:0;
+  height:1px;background:linear-gradient(90deg, transparent, var(--gold), transparent);
+  z-index:2;pointer-events:none}
+.avatar-stage.speaking{border-color:rgba(176,138,62,.85)}
+.avatar-stage.listening{border-color:rgba(226,75,74,.6)}
+.avatar-stage.thinking{border-color:rgba(176,138,62,.6);
+  animation:think 2.2s ease-in-out infinite}
+@keyframes think{0%,100%{border-color:rgba(176,138,62,.3)}
+  50%{border-color:rgba(176,138,62,.7)}}
+/* When the 3D model is active, hide 2D decorations and let the renderer
+   own the entire panel. The gold ring and gradient glow are designed for
+   the SVG avatar; over a rendered model they look like artefacts. */
+.avatar-stage.mode-3d{background:#0d1a2c;border-color:rgba(176,138,62,.45)}
+.avatar-stage.mode-3d::before,
+.avatar-stage.mode-3d::after{display:none}
+.avatar-media{position:absolute;inset:0;width:100%;height:100%;
+  display:block;object-fit:cover;transition:opacity .35s ease}
+video.avatar-media{background:var(--navy)}
+.avatar-badge{position:absolute;top:9px;right:9px;z-index:3;
+  background:rgba(226,75,74,.92);color:#fff;font-size:10px;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:999px}
+.avatar-name{font-size:10.5px;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--gold-2);margin:0 0 14px;font-weight:600}
+.mic{width:100%;display:flex;align-items:center;justify-content:center;gap:9px;padding:12px}
+.mic .dot{width:9px;height:9px;border-radius:50%;background:#231a08}
+.mic.listening{background:var(--high);color:#fff}
+.mic.listening .dot{background:#fff;animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.transcript{min-height:38px;margin:12px 0 10px;font-size:13.5px;color:var(--muted);line-height:1.5}
+.transcript.active{color:var(--ink);font-weight:600}
+
+.status{display:flex;align-items:center;gap:8px;margin:0 0 12px;
+  padding:9px 12px;background:#F1F4F9;border-radius:10px;
+  font-size:12.5px;color:var(--navy-2);font-weight:600}
+.spinner{width:13px;height:13px;border:2px solid #C6D2E2;border-top-color:var(--navy);
+  border-radius:50%;animation:spin .8s linear infinite;flex:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+.dots{display:inline-flex;gap:3px}
+.dots i{width:3px;height:3px;border-radius:50%;background:var(--navy-2);
+  animation:dot 1.2s infinite}
+.dots i:nth-child(2){animation-delay:.16s}
+.dots i:nth-child(3){animation-delay:.32s}
+@keyframes dot{0%,60%,100%{opacity:.25}30%{opacity:1}}
+.status-timer{margin-left:auto;font-variant-numeric:tabular-nums;
+  color:var(--muted);font-weight:400}
+
+.fallback-row{display:flex;gap:8px}
+.fallback-row input{flex:1;min-width:0;padding:9px 12px;border:1px solid var(--line);
+  border-radius:10px;font-family:inherit;font-size:13.5px}
+.fallback-row input:focus{outline:2px solid var(--gold);border-color:transparent}
+
+.brief{list-style:none;margin:0;padding:0}
+.brief li{display:flex;justify-content:space-between;padding:8px 0;
+  border-bottom:1px solid var(--line);font-size:13.5px}
+.brief li:last-child{border:0}
+.brief b{color:var(--navy)}
+.recommendation{margin:12px 0 0;padding:11px 13px;background:#FBF6EC;
+  border-left:3px solid var(--gold);font-size:13px;line-height:1.55;font-style:italic}
+
+.upload{display:block;padding:16px;border:1.5px dashed var(--line);border-radius:12px;
+  text-align:center;cursor:pointer;font-size:13.5px;color:var(--muted)}
+.upload:hover{border-color:var(--gold);color:var(--navy)}
+.doc-summary{margin-top:12px;padding:12px;background:#F7F6F2;border-radius:10px;
+  font-size:13px;line-height:1.6;max-height:220px;overflow:auto}
+.doc-answer{margin-top:10px;padding:12px;background:#EEF4FB;border-radius:10px;
+  font-size:13px;line-height:1.6}
+
+.kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 12px}
+.kpi .v{font-size:22px;font-weight:700;color:var(--navy);line-height:1.15}
+.kpi .l{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:5px}
+
+.map-card{padding-bottom:12px}
+#map{height:400px;border-radius:12px;background:var(--navy)}
+.legend{display:flex;gap:18px;margin-top:10px;font-size:12px;color:var(--muted)}
+.legend .sw{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px}
+.sw.low{background:var(--low)}.sw.med{background:var(--med)}.sw.high{background:var(--high)}
+
+.insight-card{border-left:3px solid var(--gold)}
+.insight-figures{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:6px}
+.fig{text-align:center;padding:10px;background:#F7F6F2;border-radius:10px}
+.fig .v{font-size:19px;font-weight:700;color:var(--navy)}
+.fig .l{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chips button{background:#EFEDE6;border:0;border-radius:999px;padding:7px 14px;
+  font-size:12.5px;cursor:pointer;font-family:inherit;color:var(--navy)}
+.chips button:hover{background:var(--gold);color:#231a08}
+
+.charts{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+/* Chart.js with maintainAspectRatio:false sizes the canvas to its parent.
+   The parent MUST be bounded and positioned, or every resize event grows the
+   canvas and the next resize grows it again. */
+.chart-box{position:relative;height:230px;width:100%}
+.chart-box canvas{position:absolute;inset:0}
+
+.banner{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;
+  margin:14px 26px 0;padding:11px 16px;border-radius:10px;
+  background:#FAEEDA;border-left:3px solid #BA7517;color:#633806;font-size:13px}
+.banner code{background:rgba(0,0,0,.07);padding:1px 6px;border-radius:4px;
+  font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px}
+html[dir="rtl"] .banner{border-left:0;border-right:3px solid #BA7517}
+
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:var(--navy);
+  color:#fff;padding:11px 20px;border-radius:10px;font-size:13.5px;z-index:9999}
+
+html[dir="rtl"] .layout{grid-template-columns:1fr 352px}
+html[dir="rtl"] .col-left{order:2} html[dir="rtl"] .col-right{order:1}
+html[dir="rtl"] .recommendation{border-left:0;border-right:3px solid var(--gold)}
+html[dir="rtl"] .insight-card{border-left:0;border-right:3px solid var(--gold)}
+
+@media(max-width:1150px){
+  .layout{grid-template-columns:1fr}
+  .kpis{grid-template-columns:repeat(3,1fr)}
+  .charts{grid-template-columns:1fr}
+}

@@ -1,0 +1,46 @@
+# ======================== ZAI .gitignore ========================
+
+# --- secrets & environment ---
+.env
+.env.*
+!.env.example
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+*.egg
+dist/
+build/
+.venv/
+venv/
+env/
+
+# --- Node ---
+node_modules/
+
+# --- Docker ---
+docker-compose.override.yml
+
+# --- IDE ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# --- Avatar models (large binary) ---
+# Track with Git LFS or download separately
+*.glb
+*.glf
+
+# --- Logs ---
+*.log
+logs/
+
+# --- OS ---
+.DS_Store
+Desktop.ini
